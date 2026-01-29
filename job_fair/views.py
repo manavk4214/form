@@ -15,8 +15,6 @@ def form(request):
     return render(request, "form.html",{"form":form})
 
 def done(request):
-    if is_authenticated:
-        return render(request, "done.html")
-    else:
-        return redirect("form")
+    return render(request, "done.html")
+  
     

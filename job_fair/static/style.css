@@ -58,6 +58,8 @@ nav img {
     background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
     padding: 40px 30px;
     border-bottom: 1px solid var(--border-color);
+    border-top: 12px solid  #3498db;;
+    border-radius:8px 8px 0 0;
 }
 
 .upper h1 {

@@ -12,6 +12,7 @@
             <img src="{% static "images/logo.png" %}" alt="">
         </nav>
         <div class="form">
+            
             <div class="upper">
                     <h1>NIELIT - Job Fair Registration 2026</h1>
                     <p><u>Venue of Job fair:</u>NIELIT DELHI CENTRE, JANAKPURI IETE Building, Institutional Area, 16/1-2,<br>
@@ -48,7 +49,7 @@
 
             {% endfor %}
 
-                <button type="submit">Submit</button>
+                <a href="{% url "done" %}"><button type="submit">Submit</button>
                 
             </form>
         </div>
