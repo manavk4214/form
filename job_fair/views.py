@@ -1,16 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import RegisterForm
 # Create your views here.
+is_authenticated=False
 def form(request):
     if request.method=="POST":
         form=RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, "done.html")
+            is_authenticated=True
+            return redirect("done")
     else:
         form=RegisterForm()
     
     return render(request, "form.html",{"form":form})
 
 def done(request):
-    return render(request, "done.html")
+    if is_authenticated:
+        return render(request, "done.html")
+    else:
+        return redirect("form")
+    
