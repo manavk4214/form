@@ -1,59 +1,283 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>NIELIT - Job Fair Registration</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        body {
+            font-family: "Arial";
+            background:#e9f0f4;;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            max-width: 710px;
+            margin: 40px auto;
+            
+            background:#e9f0f4;
+            box-shadow:none;
+
+            
+        }
+
+        nav img {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .upper p, .upper h4 {
+            margin: 5px 0;
+        }
+        .upper{
+            max-width: 647px;
+            min-width: auto;
+            margin:20px auto -20px;
+            border-radius:10px
+        }
+        nav{
+           max-width: 647px;
+            min-width: auto;
+            margin:20px auto;
+             border-radius:10px;
+        }
+        /* Each field card */
+        .form-card {
+            background: #fff;
+            padding: 30px 25px;
+            border:1px solid #cdc4c4bd;
+            margin-bottom: 14px;
+            border-radius: 10px;margin: 
+            margin-top:14px;
+            transition: 0.2s ease;
+            position: relative;
+        }
+
+        .options-container {
+            margin-top: 10px;
+        }
+
+        .options-container label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        #em input{
+            border:none;
+            border-bottom:1px solid #c9c9c9;
+            outline:none;
+            width: 180px;
+            border-radius:0;
+        }
+        input.form-control,
+select.form-select {
+    width: 100%;
+    padding: 15px;
+    font-size: 14px;
+    border: none;          /* border remove */
+    border-radius: 5px;
+    background: #fff;
+    outline: none;         /* outline remove on focus */
+    box-shadow: none;      /* shadow remove if any */
+    transition: 0.2s;
+}
+
+input.form-control:focus,
+select.form-select:focus {
+    border: none;          /* still none on focus */
+    outline: none;         /* no outline on focus */
+    box-shadow: none;      /* no shadow */
+}
+
+        /* Declaration checkbox */
+        .declaration-card label {
+            display: inline-block;
+            margin-left: 5px;
+            font-weight: normal;
+        }
+
+        /* Submit button */
+       
+        label{
+            font-size:17px;
+            font-weight:500;
+        }
+        #fl{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        #batan{
+            display: flex;
+            justify-content:space-between;
+            padding:0 3px;
+
+        }
+        .submit{
+            color:white;
+            padding:9px 25px;
+            border-radius:4px;
+            font-size:15px;
+            font-weight:bold;
+            border:none;
+        }
+        .green{
+            background: #428ca0;
+        }
+        .green:hover{
+             background: #31778b;
+        }
+        .red{
+            background:transparent;
+            color:#428ca0;
+            padding:9px 10px;
+        }
+        .red:hover{
+            background: #bde3ec67;
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .main {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="main">
+        
         <nav>
-            <img src="{% static "images/logo.png" %}" alt="">
+            <img src="{% static 'images/logo.png' %}" alt="NIELIT Logo">
         </nav>
-        <div class="form">
-            
-            <div class="upper">
-                    <h1>NIELIT - Job Fair Registration 2026</h1>
-                    <p><u>Venue of Job fair:</u>NIELIT DELHI CENTRE, JANAKPURI IETE Building, Institutional Area, 16/1-2,<br>
-                    D Block, Pankha Road, Near Sagarpur Police Station, Janakpuri New Delhi - 110058</p>
-                    <p><u>Date:</u> 21st February 2026</p>
-                    <p><u>Contact No:</u> 49878223, 20824140</p>
-                    <p><u>Mob:</u> 8447795337,9891555904</p>
-                    <p><u>Email:</u> delhi.training@nielit.gov.in, swdelhi-trg@nielit.gov.in , eastdelhi@nielit.gov.in</p>
-                    <p>Please fill the details for participating in Job fair</p>
-                    <h4>*(Last date to fill the form is 14 February 2026 till 5:00 PM)</h4>
-                    <p style="color: red;">* indicates required fields</p>
-                </div>
-            <form method="post">
-                {% csrf_token %}
-                
-                {% for i in form %}
 
-                {% if i.label == "DECLARATION BY THE CANDIDATE" %}
-                    {{i.label_tag}}
-                    <div class="declaration">
-
-                        {{ i }}
-                        <label for="{{ i.id_for_label }}">
-                            I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies, if required.
-                        </label>
-                    </div>
-
-                {% else %}
-                    <div class="field">
-                        {{ i.label_tag }}
-                        {{ i }}
-                    </div>
-                {% endif %}
-
-            {% endfor %}
-
-                <a href="{% url "done" %}"><button type="submit">Submit</button>
-                
-            </form>
+        <div class="upper">
+            <h1>NIELIT - Job Fair Registration 2026</h1>
+            <p><u>Venue of Job fair:</u> NIELIT DELHI CENTRE, JANAKPURI IETE Building, Institutional Area, 16/1-2,<br>
+            D Block, Pankha Road, Near Sagarpur Police Station, Janakpuri New Delhi - 110058</p>
+            <p><u>Date:</u> 21st February 2026</p>
+            <p><u>Contact No:</u> 49878223, 20824140</p>
+            <p><u>Mob:</u> 8447795337, 9891555904</p>
+            <p><u>Email:</u> delhi.training@nielit.gov.in, swdelhi-trg@nielit.gov.in , eastdelhi@nielit.gov.in</p>
+            <p>Please fill the details for participating in Job fair</p>
+            <h4>*(Last date to fill the form is 14 February 2026 till 5:00 PM)</h4>
+            <p style="color: red;">* indicates required fields</p>
         </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Text / Email Inputs -->
+            <div class="form-card" id="em" >
+                <label class="floating-label" for="{{ form.email.id_for_label }}" style="font-size:19px;font-weight:500;color:black;">Email</label>
+                {{ form.email }}
+                
+            </div>
+
+            <div class="form-card" id="em">
+                <label class="floating-label" for="{{ form.fullName.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Full Name of Candidate</label>
+                {{ form.fullName }}
+                
+            </div>
+
+            <div class="form-card"id="em" >
+                <label class="floating-label" for="{{ form.fatherName.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Father/Guardian Name</label>
+                {{ form.fatherName }}
+                
+            </div>
+
+            <div class="form-card" id="em">
+                <label class="floating-label" for="{{ form.phoneNumber.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Mobile Number</label>
+                {{ form.phoneNumber }}
+                
+            </div>
+
+            <div class="form-card" id="em">
+                 <label class="floating-label" for="{{ form.state.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">State</label>
+                {{ form.state }}
+               
+            </div>
+
+            <div class="form-card" id="em">
+                 <label class="floating-label" for="{{ form.course.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Course and Duration</label>
+                {{ form.course }}
+               
+            </div>
+
+            <div class="form-card" id="em">
+                <label class="floating-label" for="{{ form.passingYear.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Month/Year of Passing</label>
+                {{ form.passingYear }}
+                
+            </div>
+
+            <div class="form-card options-container">
+                <label class="floating-label" for="{{ form.email.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Any working experience?</label>
+                {{ form.experience }}
+            </div>
+
+            <!-- Radio Buttons -->
+            <div class="form-card options-container">
+                <label class="floating-label" for="{{ form.email.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Gender</label>
+                {{ form.gender }}
+            </div>
+
+            <div class="form-card options-container" >
+                 <label class="floating-label" for="{{ form.email.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Highest Qualification
+</label>
+                {{ form.highestQualification }}
+            </div>
+
+            <div class="form-card options-container">
+                <label class="floating-label" for="{{ form.email.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Currently Employed/Self Employed
+</label>
+              
+                {{ form.employed }}
+            </div>
+
+            <div class="form-card options-container">
+                 <label class="floating-label" for="{{ form.email.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Weather NIELIT/DOEACC Student?
+</label>
+                
+                {{ form.nielitStudent }}
+            </div>
+
+            <div class="form-card options-container">
+                  <label class="floating-label" for="{{ form.email.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">If yes, mention name of Training Center
+</label>
+                
+                {{ form.trainingCenter }}
+            </div>
+
+            <!-- Checkbox / Multiple Choice -->
+            <div class="form-card options-container">
+                  <label class="floating-label" for="{{ form.email.id_for_label }}"  style="font-size:19px;font-weight:500;color:black;">Technical Skills
+</label>
+               
+                {{ form.skills }}
+            </div>
+
+            <!-- Declaration -->
+            <div class="form-card declaration-card">
+                <p><b>DECLARATION BY THE CANDIDATE
+*</b></p>
+               <div id="fl">
+                <div>{{ form.dec }}</div>
+                <div> <label for="{{ form.dec.id_for_label }}"  >I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies, if required.</label></div>
+                
+                </div>
+            </div>
+            <div id="batan">
+            <button type="submit" class="submit green">Submit</button>
+            <button type="reset" class="submit red">clear form</button>
+            </div>
+
+        </form>
     </div>
-    
 </body>
 </html>
