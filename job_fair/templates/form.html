@@ -26,7 +26,28 @@
                 </div>
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                
+                {% for i in form %}
+
+                {% if i.label == "DECLARATION BY THE CANDIDATE" %}
+                    {{i.label_tag}}
+                    <div class="declaration">
+
+                        {{ i }}
+                        <label for="{{ i.id_for_label }}">
+                            I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies, if required.
+                        </label>
+                    </div>
+
+                {% else %}
+                    <div class="field">
+                        {{ i.label_tag }}
+                        {{ i }}
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+
                 <button type="submit">Submit</button>
                 
             </form>

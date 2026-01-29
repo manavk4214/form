@@ -21,7 +21,7 @@ class RegisterForm(forms.ModelForm):
         choices=list(form_m.yes_no.items()),
         widget=forms.RadioSelect)
     dec=forms.BooleanField(
-        label="I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies, if required.",
+        label="DECLARATION BY THE CANDIDATE",
         required=False,
         widget=forms.CheckboxInput(attrs={'class':'form-check-input'})
     )
