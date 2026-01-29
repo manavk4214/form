@@ -22,10 +22,12 @@
                     <p><u>Email:</u> delhi.training@nielit.gov.in, swdelhi-trg@nielit.gov.in , eastdelhi@nielit.gov.in</p>
                     <p>Please fill the details for participating in Job fair</p>
                     <h4>*(Last date to fill the form is 14 February 2026 till 5:00 PM)</h4>
-                    <p>* indicates required fields</p>
+                    <p style="color: tomato;">* indicates required fields</p>
                 </div>
             <form method="post">
-                
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
                 
             </form>
         </div>
