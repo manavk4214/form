@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 
 gender={
@@ -10,7 +11,7 @@ highestQualification={
     "Graduation (B.SC/B.COM/BA/BBA)":"Graduation (B.SC/B.COM/BA/BBA)",
     "Technical(CS/IT/Electronics/Electrical/Mechinical/B.tech/BCA)":"Technical(CS/IT/Electronics/Electrical/Mechinical/B.tech/BCA)",
     "Post Graduate":"Post Graduate",
-    "Master in Tech":"Master in Tech(MCA/M.Tech)"
+    "Master in Tech":"Master in Tech(MCA/M.Tech)",
     "Other":"Other"
 }
 yes_no={
@@ -22,7 +23,7 @@ centers={
     "J":"janakpuri",
     "K":"Karakrdooma",
 }
-skill{
+skill={
     "S&SE":"Software & Systems Expert (O Level/A Level/Programming/Web Development)",
     "AI&ML":"AI & Data Science(AI,ML,Data Science)",
     "DM":"Digital Media (Multimedia Tools,Digital Marketing)",
@@ -39,13 +40,13 @@ class form_m(models.Model):
     gender=models.CharField(max_length=1,choices=gender,blank=True, null=True)
     fatherName=models.CharField(max_length=100,blank=True, null=True)
     phoneNumber=models.CharField(max_length=10,blank=True, null=True)
-    highestQualification=model.CharField(max_lenght=100,blank=True,null=True)
+    highestQualification=models.CharField(max_lenght=100,blank=True,null=True)
     state= models.CharField(max_length=50,blank=True, null=True)
-    nielitStudent= models.CharField(max_length=1,choices=yes_no blank=True, null=True)
+    nielitStudent= models.CharField(max_length=1,choices=yes_no,blank=True, null=True)
     trainingCenter=models.CharField(max_length=1,choices=centers,blank=True, null=True)
-    passingYear=model.CharField(max_length=4,blank=True, null=True)
-    skills=model.CharField(max_length=100,choices=skill,blank=True, null=True)
-    employed= models.CharField(max_length=1,choices=yes_no blank=True, null=True)
+    passingYear=models.CharField(max_length=4,blank=True, null=True)
+    skills=models.CharField(max_length=100,choices=skill,blank=True, null=True)
+    employed= models.CharField(max_length=1,choices=yes_no,blank=True, null=True)
     experience=models.CharField(max_length=10,blank=True, null=True)
     dec=models.CharField(max_length=10,blank=True, null=True,choices=declare)
 
