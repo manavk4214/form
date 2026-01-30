@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
+   
     <title>Document</title>
 </head>
 <body>
     <div class="main">
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="{% url "home" %}">Home</a></li>
             </ul>
             <img src="{% static "images/logo.jpg" %}" alt="Nielit logo">
         </nav>
@@ -20,7 +23,7 @@
         {% block content %}
         {% endblock %}
         <footer>
-            <p>Designed and Developed by: NIELIT Delhi Centre<br>
+            <p class="mb-0">Designed and Developed by: NIELIT Delhi Centre<br>
 This site is best optimized for 1366 x 768 resolution and Google Chrome latest Version 96.0.4664.110 & above</p>
         </footer>  
     </div>

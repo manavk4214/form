@@ -1,33 +1,53 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <title>Submission Successful</title>
-</head>
-<body>
 
-<div class="main">
-    <nav>
-        <img src="{% static 'images/logo.png' %}" alt="NIELIT Logo">
-    </nav>
+{% block content %}
 
-    <div class="form">
-        <div class="upper">
-            <h1>Submission Successful</h1>
-            <p>Your registration for the <u>NIELIT Job Fair 2026</u> has been submitted successfully.</p>
-            <p>Thank you for participating.</p>
-            <p>You will be contacted by the NIELIT team if shortlisted.</p>
-            <h4>Please keep your phone and email active for updates.</h4>
+<div class="container d-flex justify-content-center align-items-center py-2 mb-3">
+    <div class="card shadow-lg border-0 text-center p-4 p-md-5"
+         style="max-width: 520px; width:100%;">
+
+        <!-- ICON -->
+        <div class="mb-3">
+            <div class="rounded-circle bg-success bg-opacity-10 d-inline-flex 
+                        align-items-center justify-content-center"
+                 style="width:80px; height:80px;">
+                <span class="fs-1 text-success">✔</span>
+            </div>
         </div>
 
-        
-            <a href="{% url "form" %}"><button type="submit">Go Back</button></a>
-        
+        <!-- TITLE -->
+        <h4 class="fw-bold text-success mb-2">
+            Form Submitted Successfully
+        </h4>
+
+        <!-- MESSAGE -->
+        <p class="text-muted mb-4">
+            Thank you for registering with <strong>NIELIT Delhi Centre</strong>.<br>
+            Your details have been recorded successfully.
+        </p>
+
+        <!-- INFO BOX -->
+        <div class="alert alert-light border text-start small mb-4">
+            <strong>Next Steps:</strong>
+            <ul class="mb-0 ps-3">
+                <li>Your information will be verified.</li>
+                <li>You may be contacted for further process.</li>
+                <li>Please keep your email & mobile active.</li>
+            </ul>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <a href="{% url 'home' %}" class="btn btn-primary px-4">
+                Go to Home
+            </a>
+            <a href="#" onclick="window.print()" class="btn btn-outline-secondary px-4">
+                Print Acknowledgement
+            </a>
+        </div>
+
     </div>
 </div>
 
-</body>
-</html>
+{% endblock content %}

@@ -27,9 +27,7 @@ body{
   padding: 1rem;
 ;
 }
-.main>nav>ul>li{
-  
-}
+
 .main>nav>ul>li>a{
   text-decoration: none;
   color: white;
@@ -188,7 +186,7 @@ form{
 }
 
 .secondary {
-  background-color: white;
+  background-color: rgb(196, 205, 211);
   color: #2563eb;
 }
 

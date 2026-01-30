@@ -1,5 +1,11 @@
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
+from django.http import HttpResponse
 from .forms import RegisterForm
+from .models import form_m
+import csv
+
 # Create your views here.
 is_authenticated=False
 def form(request):
@@ -20,3 +26,64 @@ def done(request):
 def home(request):
     return render(request, "home.html" )
     
+
+def admin_login(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None and user.is_staff:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            return render(request, 'admin_login.html', {
+                'error': 'Invalid credentials'
+            })
+
+    return render(request, 'admin_login.html')
+
+@login_required(login_url='admin_login')
+def dashboard(request):
+    data = form_m.objects.all().order_by('-id')
+    return render(request, 'dashboard.html', {'data': data})
+
+
+@login_required(login_url='admin_login')
+def export_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="registrations.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow([
+        'Email','Full Name','Gender','Father Name','Phone',
+        'Qualification','State','NIELIT Student',
+        'Training Center','Course','Passing Year',
+        'Skills','Employed','Experience','Declaration'
+    ])
+
+    for obj in form_m.objects.all():
+        writer.writerow([
+            obj.email,
+            obj.fullName,
+            obj.gender,
+            obj.fatherName,
+            obj.phoneNumber,
+            obj.highestQualification,
+            obj.state,
+            obj.nielitStudent,
+            obj.trainingCenter,
+            obj.course,
+            obj.passingYear,
+            ", ".join(obj.skills) if obj.skills else '',
+            obj.employed,
+            obj.experience,
+            obj.dec,
+        ])
+
+    return response
+
+def admin_logout(request):
+    logout(request)
+    return redirect('admin_login')

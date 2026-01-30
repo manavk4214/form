@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'admin/admin_dashboard.css' %}">
+
+<!-- ADMIN TOP BAR -->
+<div class="admin-topbar mb-3">
+    <div class="d-flex flex-column flex-md-row
+                justify-content-space align-items-start align-items-md-center gap-2">
+
+        <h6>NIELIT Admin Dashboard</h6>
+
+        <div class="d-flex gap-2">
+            <a href="{% url 'export_csv' %}" class="btn btn-success btn-sm">
+                Download CSV
+            </a>
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">
+                Logout
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container-fluid px-0">
+
+    <div class="card admin-card shadow-sm border-0">
+        <div class="card-body p-2 p-md-3">
+
+            <h6 class="mb-3 text-secondary fw-semibold text-center text-md-start">
+                Candidate Registration Data
+            </h6>
+
+            <div class="table-scroll">
+                <table class="table table-bordered table-hover align-middle mb-0 admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Email</th>
+                            <th>Full Name</th>
+                            <th>Gender</th>
+                            <th>Father Name</th>
+                            <th>Mobile</th>
+                            <th>Highest Qualification</th>
+                            <th>State</th>
+                            <th>NIELIT Student</th>
+                            <th>Training Center</th>
+                            <th>Course</th>
+                            <th>Passing Year</th>
+                            <th>Skills</th>
+                            <th>Employed</th>
+                            <th>Experience</th>
+                            <th>Declaration</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for d in data %}
+                        <tr>
+                            <td class="text-center">{{ forloop.counter }}</td>
+                            <td>{{ d.email }}</td>
+                            <td>{{ d.fullName }}</td>
+                            <td class="text-center">{{ d.gender }}</td>
+                            <td>{{ d.fatherName }}</td>
+                            <td>{{ d.phoneNumber }}</td>
+                            <td>{{ d.highestQualification }}</td>
+                            <td>{{ d.state }}</td>
+                            <td class="text-center">{{ d.nielitStudent }}</td>
+                            <td class="text-center">{{ d.trainingCenter }}</td>
+                            <td>{{ d.course }}</td>
+                            <td class="text-center">{{ d.passingYear }}</td>
+                            <td>{{ d.skills|join:", " }}</td>
+                            <td class="text-center">{{ d.employed }}</td>
+                            <td class="text-center">{{ d.experience }}</td>
+                            <td class="text-center">
+                                {% if d.dec %}
+                                    <span class="badge bg-success">Yes</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">No</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="16" class="text-center text-muted py-3">
+                                No data available
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

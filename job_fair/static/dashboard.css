@@ -1,0 +1,67 @@
+/* ===== ADMIN DASHBOARD (NIELIT STYLE) ===== */
+
+.admin-topbar {
+    background: #003366;
+    color: #ffffff;
+    padding: 15px 16px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+}
+
+.admin-topbar h6 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Fix anchor override from base css */
+.admin-topbar .btn {
+    color: #fff !important;
+}
+
+/* Card */
+.admin-card {
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+/* Table scroll without scrollbar */
+.table-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+.table-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.admin-table {
+    min-width: 1800px;
+}
+
+.admin-table th {
+    background: #e9f0f8;
+    color: #003366;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.admin-table td {
+    font-size: 17px;
+    vertical-align: middle;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+    .admin-topbar {
+        padding: 10px 12px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        font-size: 12px;
+    }
+}
