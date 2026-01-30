@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+            </ul>
+            <img src="{% static "images/logo.jpg" %}" alt="Nielit logo">
+        </nav>
+        <h3 id="pad">Nielit Delhi Centre</h3>
+        
+        {% block content %}
+        {% endblock %}
+        <footer>
+            <p>Designed and Developed by: NIELIT Delhi Centre<br>
+This site is best optimized for 1366 x 768 resolution and Google Chrome latest Version 96.0.4664.110 & above</p>
+        </footer>  
+    </div>
+</body>
+</html>
