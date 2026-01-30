@@ -2,7 +2,34 @@
 
 {% block content %}
     <div id="info">
-            <h3>Job Fair Portal</h3>
-            <h2>Personal Details</h2>
-        </div>
+        <h3>Job Fair Portal</h3>
+        <h2>Personal Details</h2>
+    </div>
+    <div class="form">
+        <form method="post" >
+            {% csrf_token %}
+            <div id="form-group">
+            {% for i in form %}
+            <div id="form-field">
+                {% if i.name == "dec" %}
+                <div class="dec">
+                <h3>{{i.label_tag}}</h3>
+                    <div class="checkbox">
+                        {{i}}
+                        <label>I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies, if required</label>
+                    </div>
+                </div>
+                {% else %}
+                {{i.label_tag}}
+                {{i}}
+                {% endif %}
+                
+
+            </div>
+            {% endfor %}
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 {% endblock content %}

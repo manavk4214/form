@@ -16,5 +16,7 @@ def form(request):
 
 def done(request):
     return render(request, "done.html")
-  
+
+def home(request):
+    return render(request, "home.html" )
     
