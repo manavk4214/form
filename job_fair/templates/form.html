@@ -9,25 +9,32 @@
         <form method="post" >
             {% csrf_token %}
             <div id="form-group">
-            {% for i in form %}
-            <div id="form-field">
-                {% if i.name == "dec" %}
-                <div class="dec">
-                <h3>{{i.label_tag}}</h3>
-                    <div class="checkbox">
-                        {{i}}
-                        <label>I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies, if required</label>
-                    </div>
-                </div>
-                {% else %}
-                {{i.label_tag}}
-                {{i}}
-                {% endif %}
-                
 
-            </div>
+    {% for i in form %}
+        {% if i.name == "dec" %}
+                    <!-- DECLARATION: FULL WIDTH -->
+                    <div class="dec">
+                        <h3>DECLARATION BY THE CANDIDATE:</h3>
+
+                        <div class="checkbox">
+                            {{ i }}
+                            <label for="{{ i.id_for_label }}">
+                                I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies.
+                            </label>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <!-- NORMAL FIELDS -->
+                    <div id="form-field">
+                        {{ i.label_tag }}
+                        {{ i }}
+                    </div>
+                {% endif %}
             {% endfor %}
-            </div>
+
+        </div>
+
             
             <button type="submit">Submit</button>
         </form>
