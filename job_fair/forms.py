@@ -42,18 +42,15 @@ class RegisterForm(forms.ModelForm):
         required=False,
         widget=forms.CheckboxInput(attrs={'class':'form-check-input'})
     )
-    highestQualification = forms.ChoiceField(
-        choices=form_m.HIGHEST_QUALIFICATION,   # 👈 NO .items()
-        widget=forms.RadioSelect,
-        label="Highest Qualification"
-    )
     nielitStudent = forms.ChoiceField(
         choices=[('', 'Choose')] + list(form_m.yes_no),
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        label="Weather a NIELIT/DOEACC Student?"
     )
     trainingCenter = forms.ChoiceField(
         choices=[('', 'Choose')] + list(form_m.centers),
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        label="If yes, mention name of Training Center"
     )
 
     class Meta:
@@ -71,6 +68,7 @@ class RegisterForm(forms.ModelForm):
             'state':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'passingYear':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'experience':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
+            'highestQualification':forms.Select(attrs={'class':'form-select'}),
             
         }
         labels={
@@ -86,7 +84,8 @@ class RegisterForm(forms.ModelForm):
             'passingYear':'Month/Year of passing course',
             'employed':'Currently Employed/Self Employed',
             'experience':'Any Working Experience (No. of years)',
-            'dec':'DECLARATION BY THE CANDIDATE'
+            'dec':'DECLARATION BY THE CANDIDATE',
+            'highestQualification':'Highest Qualification',
             }
     
     def __init__(self, *args, **kwargs):
