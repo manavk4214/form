@@ -15,7 +15,11 @@
         <nav>
             <ul>
                 <li><a href="{% url "home" %}">Home</a></li>
-                <li><a href="{% url "admin_login" %}" class="btn primary" style="padding: 0.5rem;">Admin Login</a></li>
+                {% if user.is_authenticated %}
+                    
+                {% else %}
+                    <li><a href="{% url "admin_login" %}" class="btn primary" style="padding: 0.5rem;">Admin Login</a></li>
+                {% endif %}
             </ul>
             <img src="{% static "images/logo.jpg" %}" alt="Nielit logo">
         </nav>
