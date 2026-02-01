@@ -35,7 +35,10 @@ def admin_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None and user.is_staff:
             login(request, user)
-            return redirect('dashboard')
+            if user.is_superuser:
+                return redirect('dashboard')
+            else:
+                return redirect('home')
         else:
             return render(request, 'admin_login.html', {
                 'error': 'Invalid credentials'

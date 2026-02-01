@@ -16,9 +16,12 @@
             <ul>
                 <li><a href="{% url "home" %}">Home</a></li>
                 {% if user.is_authenticated %}
-                    
+                    {% if user.is_superuser %}
+                         <li><a href="{% url "dashboard" %}">dashboard</a></li>
+                    {% endif %}
+                    <li><a href="{% url "admin_login" %}">logout</a></li>
                 {% else %}
-                    <li><a href="{% url "admin_login" %}" class="btn primary" style="padding: 0.5rem;">Admin Login</a></li>
+                    <li><a href="{% url "admin_login" %}" class="btn primary" style="padding: 0.5rem;">Login</a></li>
                 {% endif %}
             </ul>
             <img src="{% static "images/logo.jpg" %}" alt="Nielit logo">
