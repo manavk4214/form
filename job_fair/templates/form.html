@@ -1,6 +1,22 @@
+
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<img src="{% static "images/logo.jpg" %}" alt="">
+    {% block extra_css %}
+    <style>
+        nav  {
+            display:none;
+        }
+
+        #pad{
+            display:none;
+        }
+    </style>
+    {% endblock %}
+
+
 
 <div id="info">
     <h3>Job Fair Portal</h3>
@@ -14,22 +30,37 @@
         <div class="form-group">
             {% for field in form %}
                 {% if field.name == "dec" %}
-                    <!-- DECLARATION (FULL WIDTH) -->
                     <div class="dec">
                         <h3>DECLARATION BY THE CANDIDATE:</h3>
+
                         <div class="checkbox">
                             {{ field }}
-                            <label for="{{ field.id_for_label }}">
-                                I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies.
-                            </label>
+                            <label for="{{ field.id_for_label }}">I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies, if required.</label>
                         </div>
                     </div>
+                {% elif field.name == "skills" %}
+                    {# Skip skills here, will render after passingYear #}
+                {% elif field.name == "employed" or field.name == "experience" %}
+                    {# Skip these, will render after passingYear #}
                 {% else %}
-                    <!-- NORMAL FORM FIELD -->
                     <div class="form-field">
+                        
                         {{ field.label_tag }}
                         {{ field }}
                     </div>
+                    {% if field.name == "passingYear" %}
+                        {# Render employed and experience after passingYear side by side #}
+                        <div class="form-field employed-experience-group">
+                            <div class="form-field">
+                                {{ form.employed.label_tag }}
+                                {{ form.employed }}
+                            </div>
+                            <div class="form-field">
+                                {{ form.experience.label_tag }}
+                                {{ form.experience }}
+                            </div>
+                        </div>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </div>
@@ -37,5 +68,4 @@
         <button type="submit">Submit</button>
     </form>
 </div>
-
 {% endblock %}
