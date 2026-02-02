@@ -1,42 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div id="info">
-        <h3>Job Fair Portal</h3>
-        <h2>Personal Details</h2>
-    </div>
-    <div class="form">
-        <form method="post" >
-            {% csrf_token %}
-            <div id="form-group">
 
-    {% for i in form %}
-        {% if i.name == "dec" %}
-                    <!-- DECLARATION: FULL WIDTH -->
+<div id="info">
+    <h3>Job Fair Portal</h3>
+    <h2>Personal Details</h2>
+</div>
+
+<div class="form">
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            {% for field in form %}
+                {% if field.name == "dec" %}
+                    <!-- DECLARATION (FULL WIDTH) -->
                     <div class="dec">
                         <h3>DECLARATION BY THE CANDIDATE:</h3>
-
                         <div class="checkbox">
-                            {{ i }}
-                            <label for="{{ i.id_for_label }}">
+                            {{ field }}
+                            <label for="{{ field.id_for_label }}">
                                 I am aware that information provided by me in this form shall be shared by NIELIT with prospective companies.
                             </label>
                         </div>
                     </div>
-
                 {% else %}
-                    <!-- NORMAL FIELDS -->
-                    <div id="form-field">
-                        {{ i.label_tag }}
-                        {{ i }}
+                    <!-- NORMAL FORM FIELD -->
+                    <div class="form-field">
+                        {{ field.label_tag }}
+                        {{ field }}
                     </div>
                 {% endif %}
             {% endfor %}
-
         </div>
 
-            
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-{% endblock content %}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

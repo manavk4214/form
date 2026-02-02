@@ -9,7 +9,7 @@
     <p>Connecting Talent with Opportunity</p>
     <div class="hero-buttons">
       
-      <a href="#cta" class="btn secondary">Student Login</a>
+      <a href="{% url "form" %}" class="btn secondary">Register for Job Fair</a>
     </div>
   </div>
 </section>
@@ -44,28 +44,5 @@
     <p>Kick-start your career with the right opportunity.</p>
   </div>
 </section>
-
-<!-- STATS -->
-<section class="stats">
-  <div>
-    <h2>150+</h2>
-    <p>Companies</p>
-  </div>
-  <div>
-    <h2>5000+</h2>
-    <p>Students</p>
-  </div>
-  <div>
-    <h2>1200+</h2>
-    <p>Job Offers</p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta" id="cta">
-  <h2>Ready to Shape Your Future?</h2>
-  <a href="{% url "form" %}" class="btn primary">Join the Job Fair</a>
-</section>
-
 
 {% endblock content %}
