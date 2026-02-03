@@ -19,7 +19,7 @@
 
 
 <div id="info">
-    <h3>Job Fair Portal</h3>
+    <h3 style="display: flex; justify-content: space-between;">Job Fair Portal <li style="list-style: none;"><a style="text-decoration: none;font-weight: ;" href="{% url "home" %}">Home</a></li></h3>
     <h2>Personal Details</h2>
 </div>
 
@@ -39,6 +39,10 @@
                         </div>
                     </div>
                 {% elif field.name == "skills" %}
+                <div class="skills">
+                    {{field.label_tag}}
+                    {{field}}
+                </div>
                     {# Skip skills here, will render after passingYear #}
                 {% elif field.name == "employed" or field.name == "experience" %}
                     {# Skip these, will render after passingYear #}
@@ -50,7 +54,7 @@
                     </div>
                     {% if field.name == "passingYear" %}
                         {# Render employed and experience after passingYear side by side #}
-                        <div class="form-field employed-experience-group">
+                        <div id="last" class="form-field employed-experience-group">
                             <div class="form-field">
                                 {{ form.employed.label_tag }}
                                 {{ form.employed }}
@@ -60,6 +64,7 @@
                                 {{ form.experience }}
                             </div>
                         </div>
+                        
                     {% endif %}
                 {% endif %}
             {% endfor %}

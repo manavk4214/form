@@ -20,23 +20,23 @@ class form_m(models.Model):
         ("MTECH", "MCA / M.Tech"),
         ("O", "Other"),
     ]
-    yes_no={
+    yes_no=[
         ("Y","Yes"),
         ("N","No"),
-    }
+    ]
     centers = {
         ("I","Inderlok"),
         ("J", "Janakpuri"),
         ("K", "Karkardooma"),
     }
-    skill={
+    skill=[
     ("S&SE","Software & Systems Expert (O Level/A Level/Programming/Web Development)"),
     ("AI&ML","AI & Data Science(AI,ML,Data Science)"),
     ("DM","Digital Media (Multimedia Tools,Digital Marketing)"),
     ("AC","Accounting"),
     ("GN","General Office Automation"),
-    ("O","Other"),
-}
+    ("O","Other")
+    ]
     email= models.EmailField(max_length=100,blank=True, null=True)
     fullName= models.CharField(max_length=100,blank=True, null=True)
     gender=models.CharField(max_length=1,choices=gender_choices,blank=False)

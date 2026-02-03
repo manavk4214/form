@@ -9,14 +9,14 @@ HIGHEST_QUALIFICATION = [
         ("O", "Other"),
     ]
 
-skill={
+skill=[
     ("S&SE","Software & Systems Expert (O Level/A Level/Programming/Web Development)"),
     ("AI&ML","AI & Data Science(AI,ML,Data Science)"),
     ("DM","Digital Media (Multimedia Tools,Digital Marketing)"),
     ("AC","Accounting"),
     ("GN","General Office Automation"),
     ("O","Other"),
-}
+]
 centers = {
         ("I","Inderlok"),
         ("J", "Janakpuri"),
