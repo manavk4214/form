@@ -22,6 +22,44 @@ centers = {
         ("J", "Janakpuri"),
         ("K", "Karkardooma"),
     }
+states=[
+        ("AN","Andaman and Nicobar Islands"),
+        ("AP","Andhra Pradesh"),
+        ("AR","Arunachal Pradesh"),
+        ("AS","Assam"),
+        ("BR","Bihar"),
+        ("CH","Chandigarh"),
+        ("CT","Chhattisgarh"),
+        ("DL","Delhi"),
+        ("DN","Dadra and Nagar Haveli and Daman and Diu"),
+        ("GA","Goa"),
+        ("GJ","Gujarat"),
+        ("HR","Haryana"),
+        ("HP","Himachal Pradesh"),
+        ("JK","Jammu and Kashmir"),
+        ("JH","Jharkhand"),
+        ("KA","Karnataka"),
+        ("KL","Kerala"),
+        ("LA","Ladakh"),
+        ("LD","Lakshadweep"),
+        ("MP","Madhya Pradesh"),
+        ("MH","Maharashtra"),
+        ("MN","Manipur"),
+        ("ML","Meghalaya"),
+        ("MZ","Mizoram"),
+        ("NL","Nagaland"),
+        ("OR","Odisha"),
+        ("PB","Punjab"),
+        ("PY","Puducherry"),
+        ("RJ","Rajasthan"),
+        ("SK","Sikkim"),
+        ("TN","Tamil Nadu"),
+        ("TG","Telangana"),
+        ("TR","Tripura"),
+        ("UP","Uttar Pradesh"),
+        ("UT","Uttarakhand"),
+        ("WB","West Bengal"),
+    ]
 
 class RegisterForm(forms.ModelForm):
     skills=forms.MultipleChoiceField(
@@ -52,6 +90,11 @@ class RegisterForm(forms.ModelForm):
         widget=forms.Select(attrs={'class': 'form-select'}),
         label="If yes, mention name of Training Center"
     )
+    state = forms.ChoiceField(
+        choices=[('', 'Choose')] + list(states),
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        label="State"
+    )
 
     class Meta:
 
@@ -65,7 +108,7 @@ class RegisterForm(forms.ModelForm):
             'fatherName':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'phoneNumber':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'course':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
-            'state':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
+            
             'passingYear':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'experience':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'highestQualification':forms.Select(attrs={'class':'form-select'}),

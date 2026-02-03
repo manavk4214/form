@@ -37,13 +37,51 @@ class form_m(models.Model):
     ("GN","General Office Automation"),
     ("O","Other")
     ]
+    states=[
+        ("AN","Andaman and Nicobar Islands"),
+        ("AP","Andhra Pradesh"),
+        ("AR","Arunachal Pradesh"),
+        ("AS","Assam"),
+        ("BR","Bihar"),
+        ("CH","Chandigarh"),
+        ("CT","Chhattisgarh"),
+        ("DL","Delhi"),
+        ("DN","Dadra and Nagar Haveli and Daman and Diu"),
+        ("GA","Goa"),
+        ("GJ","Gujarat"),
+        ("HR","Haryana"),
+        ("HP","Himachal Pradesh"),
+        ("JK","Jammu and Kashmir"),
+        ("JH","Jharkhand"),
+        ("KA","Karnataka"),
+        ("KL","Kerala"),
+        ("LA","Ladakh"),
+        ("LD","Lakshadweep"),
+        ("MP","Madhya Pradesh"),
+        ("MH","Maharashtra"),
+        ("MN","Manipur"),
+        ("ML","Meghalaya"),
+        ("MZ","Mizoram"),
+        ("NL","Nagaland"),
+        ("OR","Odisha"),
+        ("PB","Punjab"),
+        ("PY","Puducherry"),
+        ("RJ","Rajasthan"),
+        ("SK","Sikkim"),
+        ("TN","Tamil Nadu"),
+        ("TG","Telangana"),
+        ("TR","Tripura"),
+        ("UP","Uttar Pradesh"),
+        ("UT","Uttarakhand"),
+        ("WB","West Bengal"),
+    ]
     email= models.EmailField(max_length=100,blank=True, null=True)
     fullName= models.CharField(max_length=100,blank=True, null=True)
     gender=models.CharField(max_length=1,choices=gender_choices,blank=False)
     fatherName=models.CharField(max_length=100,blank=True, null=True)
     phoneNumber=models.CharField(max_length=10,blank=True, null=True)
     highestQualification=models.CharField(max_length=100,blank=False,choices=HIGHEST_QUALIFICATION)
-    state= models.CharField(max_length=50,blank=True, null=True)
+    state= models.CharField(max_length=50,choices=states, null=True)
     nielitStudent= models.CharField(max_length=1,choices=yes_no,blank=True, null=True)
     trainingCenter=models.CharField(max_length=1,choices=centers,blank=True, null=True)
     course=models.CharField(max_length=100,blank=True, null=True)

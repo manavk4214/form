@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block content %}
-<img src="{% static "images/logo.jpg" %}" alt="">
     {% block extra_css %}
     <style>
         nav  {
@@ -19,7 +18,7 @@
 
 
 <div id="info">
-    <h3 style="display: flex; justify-content: space-between;">Job Fair Portal <li style="list-style: none;"><a style="text-decoration: none;font-weight: ;" href="{% url "home" %}">Home</a></li></h3>
+    <h3 style="display: flex; justify-content: space-between;">Job Fair Portal <li style="list-style: none;"><a style="text-decoration: none;font-weight:normal ;" href="{% url "home" %}">Home</a></li></h3>
     <h2>Personal Details</h2>
 </div>
 
@@ -41,6 +40,7 @@
                 {% elif field.name == "skills" %}
                 <div class="skills">
                     {{field.label_tag}}
+                    
                     {{field}}
                 </div>
                     {# Skip skills here, will render after passingYear #}
