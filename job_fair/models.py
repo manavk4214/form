@@ -3,14 +3,14 @@ from django.db import models
 
 
 class form_m(models.Model):
-    declare={
+    declare=[
     ("Declared","I am aware that information provided bt me in this form shall be shared by NIELIT with prospective companies,if required."),
-}
-    gender_choices={
+]
+    gender_choices=[
         ("M","Male"),
         ("F","Female"),
         ("O","other"),
-    }
+    ]
    
     HIGHEST_QUALIFICATION = [
         ("10+2", "10+2 / ITI / Pursuing Graduation"),
@@ -32,8 +32,8 @@ class form_m(models.Model):
     skill=[
     ("S&SE","Software & Systems Expert (O Level/A Level/Programming/Web Development)"),
     ("AI&ML","AI & Data Science(AI,ML,Data Science)"),
-    ("DM","Digital Media (Multimedia Tools,Digital Marketing)"),
     ("AC","Accounting"),
+    ("DM","Digital Media (Multimedia Tools,Digital Marketing)"),
     ("GN","General Office Automation"),
     ("O","Other")
     ]

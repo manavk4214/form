@@ -47,9 +47,7 @@ def admin_login(request):
     return render(request, 'admin_login.html')
 
 @login_required(login_url='admin_login')
-def dashboard(request):
-    data = form_m.objects.all().order_by('-id')
-    return render(request, 'dashboard.html', {'data': data})
+
 
 
 @login_required(login_url='admin_login')
@@ -92,4 +90,16 @@ def admin_logout(request):
     return redirect('admin_login')
 
 
+def dashboard(request):
+    data = form_m.objects.all()
+    context = {
+        "data": data,
+        "total_candidates": data.count(),
+        "total_male": data.filter(gender="M").count(),
+        "total_female": data.filter(gender="F").count(),
+        "total_employed": data.filter(employed="Y").count(),
+        "total_experienced": data.filter(experience="Y").count(),
+        "total_nielit": data.filter(nielitStudent="Y").count(),
+    }
 
+    return render(request, "dashboard.html", context)

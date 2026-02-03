@@ -29,7 +29,7 @@
         <div class="form-group">
             {% for field in form %}
                 {% if field.name == "dec" %}
-                    <div class="dec">
+                    <div class="dec w-100">
                         <h3>DECLARATION BY THE CANDIDATE:</h3>
 
                         <div class="checkbox">
@@ -39,9 +39,8 @@
                     </div>
                 {% elif field.name == "skills" %}
                 <div class="skills">
-                    {{field.label_tag}}
-                    
-                    {{field}}
+                {{field.label_tag}}
+                 {{field}}
                 </div>
                     {# Skip skills here, will render after passingYear #}
                 {% elif field.name == "employed" or field.name == "experience" %}

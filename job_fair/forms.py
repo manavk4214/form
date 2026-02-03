@@ -12,16 +12,16 @@ HIGHEST_QUALIFICATION = [
 skill=[
     ("S&SE","Software & Systems Expert (O Level/A Level/Programming/Web Development)"),
     ("AI&ML","AI & Data Science(AI,ML,Data Science)"),
-    ("DM","Digital Media (Multimedia Tools,Digital Marketing)"),
     ("AC","Accounting"),
+    ("DM","Digital Media (Multimedia Tools,Digital Marketing)"),
     ("GN","General Office Automation"),
     ("O","Other"),
 ]
-centers = {
+centers = [
         ("I","Inderlok"),
         ("J", "Janakpuri"),
         ("K", "Karkardooma"),
-    }
+    ]
 states=[
         ("AN","Andaman and Nicobar Islands"),
         ("AP","Andhra Pradesh"),
@@ -77,7 +77,7 @@ class RegisterForm(forms.ModelForm):
         widget=forms.RadioSelect)
     dec=forms.BooleanField(
         label="DECLARATION BY THE CANDIDATE",
-        required=False,
+        required=True,
         widget=forms.CheckboxInput(attrs={'class':'form-check-input'})
     )
     nielitStudent = forms.ChoiceField(
@@ -89,6 +89,11 @@ class RegisterForm(forms.ModelForm):
         choices=[('', 'Choose')] + list(form_m.centers),
         widget=forms.Select(attrs={'class': 'form-select'}),
         label="If yes, mention name of Training Center"
+    )
+    highestQualification = forms.ChoiceField(
+        choices=[('', 'Choose')] + list(form_m.HIGHEST_QUALIFICATION),
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        label="Highest Qualification"
     )
     state = forms.ChoiceField(
         choices=[('', 'Choose')] + list(states),
@@ -108,7 +113,6 @@ class RegisterForm(forms.ModelForm):
             'fatherName':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'phoneNumber':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'course':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
-            
             'passingYear':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'experience':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'highestQualification':forms.Select(attrs={'class':'form-select'}),
@@ -128,7 +132,6 @@ class RegisterForm(forms.ModelForm):
             'employed':'Currently Employed/Self Employed',
             'experience':'Any Working Experience (No. of years)',
             'dec':'DECLARATION BY THE CANDIDATE',
-            'highestQualification':'Highest Qualification',
             }
     
     def __init__(self, *args, **kwargs):
