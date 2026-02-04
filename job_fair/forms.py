@@ -62,6 +62,7 @@ states=[
     ]
 
 class RegisterForm(forms.ModelForm):
+   
     skills=forms.MultipleChoiceField(
         choices=skill,
         widget=forms.CheckboxSelectMultiple,
@@ -100,7 +101,6 @@ class RegisterForm(forms.ModelForm):
         widget=forms.Select(attrs={'class': 'form-select'}),
         label="State"
     )
-
     class Meta:
 
         model = form_m
@@ -110,8 +110,8 @@ class RegisterForm(forms.ModelForm):
         widgets={
             'email':forms.EmailInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'fullName':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
-            'fatherName':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'phoneNumber':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
+            'fatherName':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'course':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'passingYear':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),
             'experience':forms.TextInput(attrs={'class':'form-control','placeholder':'Your answer'}),

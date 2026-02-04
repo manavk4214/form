@@ -1,137 +1,159 @@
+
 {% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'admin/admin_dashboard.css' %}">
+    {% block extra_css %}
+    <style>
+        #image-remove{ 
+            display:none;
+        }
+        .gov-nav{
+            border-bottom: none;
+        }
+        #pad{
+            display:none;
+        }
+    </style>
+    {% endblock %}
+<div class="container-fluid px-2 py-3">
 
-<div class="container-fluid px-3 mt-3">
+    <!-- ================= DASHBOARD SUMMARY ================= -->
+    <div class="card shadow-sm mb-3">
+        <div class="card-body">
 
-    <div class="row g-3">
+            <div class="d-flex justify-content-center align-items-center mb-3">
+                <h6 class="fw-semibold text-uppercase text-dark text-center mb-0">
+                    Dashboard Summary
+                </h6>
+            </div>
 
-        <!-- ================= LEFT STATS PANEL ================= -->
-        <div class="col-lg-3 col-md-4">
+            <div class="row g-2 text-center">
 
-            <div class="gov-panel">
-
-                <h6 class="gov-panel-title">Dashboard Summary</h6>
-
-                <div class="gov-stat">
-                    <span>Total Candidates</span>
-                    <strong>{{ total_candidates }}</strong>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded py-2">
+                        <small class="text-muted">Total</small>
+                        <div class="fw-bold">{{ total_candidates }}</div>
+                    </div>
                 </div>
 
-                <div class="gov-stat">
-                    <span>Male Candidates</span>
-                    <strong>{{ total_male }}</strong>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded py-2">
+                        <small class="text-muted">Male</small>
+                        <div class="fw-bold">{{ total_male }}</div>
+                    </div>
                 </div>
 
-                <div class="gov-stat">
-                    <span>Female Candidates</span>
-                    <strong>{{ total_female }}</strong>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded py-2">
+                        <small class="text-muted">Female</small>
+                        <div class="fw-bold">{{ total_female }}</div>
+                    </div>
                 </div>
 
-                <div class="gov-stat">
-                    <span>Employed Candidates</span>
-                    <strong>{{ total_employed }}</strong>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded py-2">
+                        <small class="text-muted">Employed</small>
+                        <div class="fw-bold">{{ total_employed }}</div>
+                    </div>
                 </div>
 
-                <div class="gov-stat">
-                    <span>Experienced Candidates</span>
-                    <strong>{{ total_experienced }}</strong>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded py-2">
+                        <small class="text-muted">Experienced</small>
+                        <div class="fw-bold">{{ total_experienced }}</div>
+                    </div>
                 </div>
 
-                <div class="gov-stat highlight">
-                    <span>NIELIT Students</span>
-                    <strong>{{ total_nielit }}</strong>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded py-2 bg-light">
+                        <small class="text-muted">NIELIT Student</small>
+                        <div class="fw-bold">{{ total_nielit }}</div>
+                    </div>
                 </div>
 
             </div>
 
         </div>
+    </div>
 
-        <!-- ================= RIGHT MAIN CONTENT ================= -->
-        <div class="col-lg-9 col-md-8">
+    <!-- ================= TABLE SECTION ================= -->
+    <div class="card shadow-sm">
 
-            <!-- TOP BAR -->
-            <div class="admin-topbar mb-3">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <h6 class="mb-0 fw-semibold" style="color:black;">NIELIT Admin Dashboard</h6>
-                    <a href="{% url 'export_csv' %}" class="btn btn-success btn-sm">
-                        Download CSV
-                    </a>
-                </div>
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="fw-semibold text-secondary mb-0">
+                    Candidate Registration Data
+                </h6>
+
+                <a href="{% url 'export_csv' %}" class="btn btn-success btn-sm">
+                    Download CSV
+                </a>
             </div>
-            <!-- TABLE CARD -->
-            <div class="card admin-card">
-                <div class="card-body p-2 p-md-3">
 
-                    <h6 class="mb-3 text-secondary fw-semibold">
-                        Candidate Registration Data
-                    </h6>
+            <div class="table-responsive" style="overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;">
 
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover align-middle admin-table mb-0">
+                <table class="table table-bordered table-hover align-middle small mb-0 text-nowrap">
 
-                            <thead>
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Email</th>
-                                    <th>Full Name</th>
-                                    <th>Gender</th>
-                                    <th>Father Name</th>
-                                    <th>Mobile</th>
-                                    <th>Highest Qualification</th>
-                                    <th>State</th>
-                                    <th>NIELIT Student</th>
-                                    <th>Training Center</th>
-                                    <th>Course</th>
-                                    <th>Passing Year</th>
-                                    <th>Skills</th>
-                                    <th>Employed</th>
-                                    <th>Experience</th>
-                                    <th>Declaration</th>
-                                </tr>
-                            </thead>
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>S.No</th>
+                            <th>Email</th>
+                            <th>Full Name</th>
+                            <th>Gender</th>
+                            <th>Father Name</th>
+                            <th>Mobile</th>
+                            <th>Highest Qualification</th>
+                            <th>State</th>
+                            <th>NIELIT Student</th>
+                            <th>Training Center</th>
+                            <th>Course</th>
+                            <th>Passing Year</th>
+                            <th>Skills</th>
+                            <th>Employed</th>
+                            <th>Experience</th>
+                            <th>Declaration</th>
+                        </tr>
+                    </thead>
 
-                            <tbody>
-                            {% for d in data %}
-                                <tr>
-                                    <td class="text-center">{{ forloop.counter }}</td>
-                                    <td>{{ d.email }}</td>
-                                    <td>{{ d.fullName }}</td>
-                                    <td class="text-center">{{ d.gender }}</td>
-                                    <td>{{ d.fatherName }}</td>
-                                    <td>{{ d.phoneNumber }}</td>
-                                    <td>{{ d.highestQualification }}</td>
-                                    <td>{{ d.state }}</td>
-                                    <td class="text-center">{{ d.nielitStudent }}</td>
-                                    <td>{{ d.trainingCenter }}</td>
-                                    <td>{{ d.course }}</td>
-                                    <td class="text-center">{{ d.passingYear }}</td>
-                                    <td>{{ d.skills|join:", " }}</td>
-                                    <td class="text-center">{{ d.employed }}</td>
-                                    <td class="text-center">{{ d.experience }}</td>
-                                    <td class="text-center">
-                                        {% if d.dec %}
-                                            <span class="badge bg-success">Yes</span>
-                                        {% else %}
-                                            <span class="badge bg-secondary">No</span>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% empty %}
-                                <tr>
-                                    <td colspan="16" class="text-center text-muted py-3">
-                                        No data available
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
+                    <tbody>
+                    {% for d in data %}
+                        <tr>
+                            <td class="text-center">{{ forloop.counter }}</td>
+                            <td>{{ d.email }}</td>
+                            <td>{{ d.fullName }}</td>
+                            <td class="text-center">{{ d.gender }}</td>
+                            <td>{{ d.fatherName }}</td>
+                            <td>{{ d.phoneNumber }}</td>
+                            <td>{{ d.highestQualification }}</td>
+                            <td>{{ d.state }}</td>
+                            <td class="text-center">{{ d.nielitStudent }}</td>
+                            <td>{{ d.trainingCenter }}</td>
+                            <td>{{ d.course }}</td>
+                            <td class="text-center">{{ d.passingYear }}</td>
+                            <td>{{ d.skills|join:", " }}</td>
+                            <td class="text-center">{{ d.employed }}</td>
+                            <td class="text-center">{{ d.experience }}</td>
+                            <td class="text-center">
+                                {% if d.dec %}
+                                    <span class="badge bg-success">Yes</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">No</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="16" class="text-center text-muted py-4">
+                                No data available
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
 
-                        </table>
-                    </div>
+                </table>
 
-                </div>
             </div>
 
         </div>
@@ -139,4 +161,5 @@
     </div>
 
 </div>
+
 {% endblock %}
