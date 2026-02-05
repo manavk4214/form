@@ -9,19 +9,18 @@ import csv
 # Create your views here.
 is_authenticated=False
 def form(request):
-    if request.method=="POST":
-        form=RegisterForm(request.POST)
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            is_authenticated=True
-            return redirect("done")
+            obj = form.save()   # 👈 capture saved object
+            return redirect("done", pk=obj.id)
     else:
-        form=RegisterForm()
-    
-    return render(request, "form.html",{"form":form})
+        form = RegisterForm()
 
-def done(request):
-    return render(request, "done.html")
+    return render(request, "form.html", {"form": form})
+def done(request, pk):
+    student = form_m.objects.get(id=pk)
+    return render(request, "done.html", {"student": student})
 
 def home(request):
     return render(request, "home.html" )
@@ -82,7 +81,6 @@ def export_csv(request):
             obj.experience,
             obj.dec,
         ])
-
     return response
 
 def admin_logout(request):
@@ -101,5 +99,4 @@ def dashboard(request):
         "total_experienced": data.filter(experience="Y").count(),
         "total_nielit": data.filter(nielitStudent="Y").count(),
     }
-
     return render(request, "dashboard.html", context)

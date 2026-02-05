@@ -1,53 +1,165 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
 
-<div class="container d-flex justify-content-center align-items-center py-2 mb-3">
-    <div class="card shadow-lg border-0 text-center p-4 p-md-5"
-         style="max-width: 520px; width:100%;">
+<style>
+/* FORCE ONE PAGE */
+@page {
+    size: A4;
+    margin: 12mm;
+}
 
-        <!-- ICON -->
-        <div class="mb-3">
-            <div class="rounded-circle bg-success bg-opacity-10 d-inline-flex 
-                        align-items-center justify-content-center"
-                 style="width:80px; height:80px;">
-                <span class="fs-1 text-success">✔</span>
+/* SCREEN */
+#printArea {
+    width: 100%;
+}
+
+/* PRINT */
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    #printArea, #printArea * {
+        visibility: visible;
+    }
+
+    #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        page-break-inside: avoid;
+    }
+
+    table, tr, td, th {
+        page-break-inside: avoid !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* FULL WIDTH TABLE */
+table {
+    width: 100% !important;
+}
+</style>
+
+<div id="printArea">
+    <div class="border p-4">
+
+        <!-- HEADER -->
+        <div class="text-center mb-3">
+           
+            <h5 class="fw-bold mb-0">
+                National Institute of Electronics & Information Technology
+            </h5>
+            <small class="text-muted">
+                Ministry of Electronics & Information Technology, Government of India
+            </small>
+            <hr>
+            <h6 class="fw-bold text-uppercase">Acknowledgement Slip</h6>
+        </div>
+
+        <!-- META -->
+        <div class="d-flex justify-content-between small mb-3">
+            <div>
+                <strong>Application ID:</strong> NIELIT-{{ student.id }}
+            </div>
+            <div>
+                <strong>Date:</strong> {% now "d-m-Y" %}
             </div>
         </div>
 
-        <!-- TITLE -->
-        <h4 class="fw-bold text-success mb-2">
-            Form Submitted Successfully
-        </h4>
+        <!-- DETAILS -->
+        <table class="table table-bordered small">
+            <tr>
+                <th width="30%">Candidate Name</th>
+                <td>{{ student.fullName }}</td>
+            </tr>
+            <tr>
+                <th>Father’s Name</th>
+                <td>{{ student.fatherName }}</td>
+            </tr>
+            <tr>
+                <th>Email ID</th>
+                <td>{{ student.email }}</td>
+            </tr>
+            <tr>
+                <th>Mobile Number</th>
+                <td>{{ student.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ student.get_gender_display }}</td>
+            </tr>
+            <tr>
+                <th>Highest Qualification</th>
+                <td>{{ student.get_highestQualification_display }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ student.get_state_display }}</td>
+            </tr>
+            <tr>
+                <th>NIELIT Student</th>
+                <td>{{ student.get_nielitStudent_display }}</td>
+            </tr>
+            <tr>
+                <th>Training Center</th>
+                <td>{{ student.get_trainingCenter_display }}</td>
+            </tr>
+            <tr>
+                <th>Course Applied</th>
+                <td>{{ student.course }}</td>
+            </tr>
+            <tr>
+                <th>Passing Year</th>
+                <td>{{ student.passingYear }}</td>
+            </tr>
+            <tr>
+                <th>Skills</th>
+                <td>
+                    {% for s in student.get_skill_display_list %}
+                    {{ s }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
 
-        <!-- MESSAGE -->
-        <p class="text-muted mb-4">
-            Thank you for registering with <strong>NIELIT Delhi Centre</strong>.<br>
-            Your details have been recorded successfully.
+                </td>
+            </tr>
+        </table>
+        <!-- DECLARATION -->
+        <p class="small mt-3">
+            This is to acknowledge that the above candidate has successfully submitted
+            the registration form at <strong>NIELIT Delhi Centre</strong>.
+            The information provided by the candidate will be verified by the institute.
         </p>
 
-        <!-- INFO BOX -->
-        <div class="alert alert-light border text-start small mb-4">
-            <strong>Next Steps:</strong>
-            <ul class="mb-0 ps-3">
-                <li>Your information will be verified.</li>
-                <li>You may be contacted for further process.</li>
-                <li>Please keep your email & mobile active.</li>
-            </ul>
+        <!-- SIGNATURE -->
+        <div class="d-flex justify-content-between mt-4 small">
+            <div>
+                <strong>Candidate Signature</strong><br><br>
+                ________________________
+            </div>
+            <div class="text-end">
+                <strong>Authorized Signatory</strong><br><br>
+                ________________________
+            </div>
         </div>
 
-        <!-- BUTTONS -->
-        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-            <a href="{% url 'home' %}" class="btn btn-primary px-4">
-                Go to Home
-            </a>
-            <a href="#" onclick="window.print()" class="btn btn-outline-secondary px-4">
+        <!-- FOOTER -->
+        <p class="text-center small text-muted mt-3">
+            *This is a system-generated acknowledgement and does not require a signature.
+        </p>
+        <!-- PRINT BUTTON -->
+        <div class="text-center mt-2 no-print">
+            <button onclick="window.print()" class="btn btn-primary px-4">
                 Print Acknowledgement
-            </a>
+            </button>
         </div>
 
     </div>
 </div>
-
-{% endblock content %}
+{% endblock %}

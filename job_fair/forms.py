@@ -1,80 +1,21 @@
 from .models import form_m
 from django import forms
-HIGHEST_QUALIFICATION = [
-        ("10+2", "10+2 / ITI / Pursuing Graduation"),
-        ("UG", "Graduation (B.Sc / B.Com / BA / BBA)"),
-        ("TECH", "Technical (CS / IT / BCA / B.Tech)"),
-        ("PG", "Post Graduate"),
-        ("MTECH", "MCA / M.Tech"),
-        ("O", "Other"),
-    ]
 
-skill=[
-    ("S&SE","Software & Systems Expert (O Level/A Level/Programming/Web Development)"),
-    ("AI&ML","AI & Data Science(AI,ML,Data Science)"),
-    ("AC","Accounting"),
-    ("DM","Digital Media (Multimedia Tools,Digital Marketing)"),
-    ("GN","General Office Automation"),
-    ("O","Other"),
-]
-centers = [
-        ("I","Inderlok"),
-        ("J", "Janakpuri"),
-        ("K", "Karkardooma"),
-    ]
-states=[
-        ("AN","Andaman and Nicobar Islands"),
-        ("AP","Andhra Pradesh"),
-        ("AR","Arunachal Pradesh"),
-        ("AS","Assam"),
-        ("BR","Bihar"),
-        ("CH","Chandigarh"),
-        ("CT","Chhattisgarh"),
-        ("DL","Delhi"),
-        ("DN","Dadra and Nagar Haveli and Daman and Diu"),
-        ("GA","Goa"),
-        ("GJ","Gujarat"),
-        ("HR","Haryana"),
-        ("HP","Himachal Pradesh"),
-        ("JK","Jammu and Kashmir"),
-        ("JH","Jharkhand"),
-        ("KA","Karnataka"),
-        ("KL","Kerala"),
-        ("LA","Ladakh"),
-        ("LD","Lakshadweep"),
-        ("MP","Madhya Pradesh"),
-        ("MH","Maharashtra"),
-        ("MN","Manipur"),
-        ("ML","Meghalaya"),
-        ("MZ","Mizoram"),
-        ("NL","Nagaland"),
-        ("OR","Odisha"),
-        ("PB","Punjab"),
-        ("PY","Puducherry"),
-        ("RJ","Rajasthan"),
-        ("SK","Sikkim"),
-        ("TN","Tamil Nadu"),
-        ("TG","Telangana"),
-        ("TR","Tripura"),
-        ("UP","Uttar Pradesh"),
-        ("UT","Uttarakhand"),
-        ("WB","West Bengal"),
-    ]
 
 class RegisterForm(forms.ModelForm):
    
     skills=forms.MultipleChoiceField(
-        choices=skill,
+        choices=form_m.skill,
         widget=forms.CheckboxSelectMultiple,
         label="Technical Skills")
     employed=forms.ChoiceField(
-        choices=(form_m.yes_no),
+        choices=form_m.yes_no,
         widget=forms.RadioSelect)
     gender=forms.ChoiceField(
-        choices=(form_m.gender_choices),
+        choices=form_m.gender_choices,
         widget=forms.RadioSelect)
     experience=forms.ChoiceField(
-        choices=(form_m.yes_no),
+        choices=form_m.yes_no,
         widget=forms.RadioSelect)
     dec=forms.BooleanField(
         label="DECLARATION BY THE CANDIDATE",
@@ -97,7 +38,7 @@ class RegisterForm(forms.ModelForm):
         label="Highest Qualification"
     )
     state = forms.ChoiceField(
-        choices=[('', 'Choose')] + list(states),
+        choices=[('', 'Choose')] + list(form_m.states),
         widget=forms.Select(attrs={'class': 'form-select'}),
         label="State"
     )
