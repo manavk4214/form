@@ -14,6 +14,24 @@
         #pad{
             display:none;
         }
+        #nielit-student{ position: relative; }
+        .nielit-tooltip{
+            display:none;
+            position:absolute;
+            top:100%;
+            left:50%;
+            transform:translateX(-50%);
+            min-width:200px;
+            background:#fff;
+            border:1px solid #e0e0e0;
+            padding:8px;
+            box-shadow:0 6px 18px rgba(0,0,0,0.08);
+            z-index:20;
+            text-align:left;
+        }
+        #nielit-student:hover .nielit-tooltip{ display:block; }
+        .nielit-tooltip ul{ margin:0; padding:0; }
+        .nielit-tooltip li{ display:flex; justify-content:space-between; padding:2px 0; }
     </style>
     {% endblock %}
 <div class="container-fluid px-2 py-3">
@@ -65,10 +83,20 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-4 col-lg-2">
+                <div class="col-6 col-md-4 col-lg-2" id="nielit-student">
                     <div class="border rounded py-2 bg-light">
                         <small class="text-muted">NIELIT Student</small>
                         <div class="fw-bold">{{ total_nielit }}</div>
+                    </div>
+                    <div class="nielit-tooltip">
+                        <strong>By Training Center</strong>
+                        <ul class="list-unstyled mb-0">
+                            {% for s in nielit_by_center %}
+                                <li><span>{{ s.trainingCenter|default:"(Unknown)" }}</span><span class="text-danger fw-bold">{{ s.count }}</span></li>
+                            {% empty %}
+                                <li class="text-muted">No NIELIT students</li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
 

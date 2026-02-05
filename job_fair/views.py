@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from .forms import RegisterForm
 from .models import form_m
 import csv
+from django.db.models import Count
 
 # Create your views here.
 is_authenticated=False
@@ -90,13 +91,17 @@ def admin_logout(request):
 
 def dashboard(request):
     data = form_m.objects.all()
+    # breakdown of NIELIT students by training center
+    nielit_qs = data.filter(nielitStudent="Yes")
+    nielit_by_center = nielit_qs.values('trainingCenter').annotate(count=Count('id')).order_by('-count')
     context = {
         "data": data,
         "total_candidates": data.count(),
-        "total_male": data.filter(gender="M").count(),
-        "total_female": data.filter(gender="F").count(),
-        "total_employed": data.filter(employed="Y").count(),
-        "total_experienced": data.filter(experience="Y").count(),
-        "total_nielit": data.filter(nielitStudent="Y").count(),
+        "total_male": data.filter(gender="Male").count(),
+        "total_female": data.filter(gender="Female").count(),
+        "total_employed": data.filter(employed="Yes").count(),
+        "total_experienced": data.filter(experience="Yes").count(),
+        "total_nielit": nielit_qs.count(),
+        "nielit_by_center": nielit_by_center,
     }
     return render(request, "dashboard.html", context)
