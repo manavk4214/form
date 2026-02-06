@@ -173,14 +173,38 @@ form>button{
 
 /* HERO */
 .hero {
-  height: 80vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url("/static/images/jobfair.jpg") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.carousel {
+  height: 500px;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive Carousel */
+@media (max-width: 768px) {
+  .carousel {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel {
+    height: 250px;
+  }
 }
 
 .hero-text h1 {
